@@ -1,0 +1,159 @@
+package com.collectionFramework;
+
+public class LinkedListImplementation {
+    private Node head;
+
+        private static class Node{
+            private int data;
+            private Node next;
+
+            Node(){
+            }
+            public Node(int data){
+                this.data=data;
+                this.next=null;
+            }
+        }
+    public void add(){
+        Node newnode=new Node();
+
+        if(head==null){
+            head=newnode;
+        }
+        else{
+            Node temp=head;
+            while(temp!=null){
+                System.out.print(temp.data+ "-- ");
+                temp=temp.next;
+            }
+            //temp.next=newnode;
+            System.out.println("null");
+        }}
+    public void insertFirst(int value) {
+        Node newnode = new Node(value);
+        newnode.next=head;
+        head=newnode;
+    }
+    public void insertLast(int value) {
+        Node newnode = new Node(value);
+        if (head == null) {
+            head = newnode;
+            return;
+        }
+        Node temp = head;
+        while (null != temp.next) {
+            temp = temp.next;
+        }
+        temp.next = newnode;
+    }
+
+    public void insertPosition(int position, int value) {
+
+        Node node = new Node(value);
+
+        if (position == 1) {
+            node.next = head;
+            head = node;
+        } else {
+            Node previous = head;
+            int count = 1; // position - 1
+
+            while (count < position - 1) {
+                previous = previous.next;
+                count++;
+            }
+
+            Node temp = previous.next;
+            previous.next = node;
+            node.next = temp;
+        }
+
+    }
+    public int size() {
+        if (head == null) {
+            return 0;
+        }
+        int count = 0;
+        Node temp = head;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+
+
+    public void append(int data) {
+        Node newnode = new Node(data);
+        newnode.data = data;
+        newnode.next = null;
+        Node temp;
+        temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = newnode;
+    }
+    public Node pop() {
+        if (head == null) {
+            return null;
+        }
+        Node temp = head;
+        head = head.next;
+        temp.next = null;
+        return temp;
+    }
+    public Node popLast() {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node temp = head;
+        Node previous = null;
+
+        while (temp.next != null) {
+            previous = temp;
+            temp = temp.next;
+        }
+        previous.next = null; // break the chain
+        return temp;
+    }
+
+            public static void main(String[] args) {
+                LinkedListImplementation ll = new LinkedListImplementation();
+                ll.head=new Node(56);
+                Node second = new Node(30);
+                Node third = new Node(70);
+
+                ll.head.next =second;
+                second.next= third;
+                ll.add();
+
+                //ll.append(70);
+                //ll.add();
+
+                System.out.println("Size is : " +ll.size());
+
+                LinkedListImplementation ll3 = new LinkedListImplementation();
+                ll3.insertPosition(1,56);
+                ll3.insertPosition(2,70);
+                ll3.insertPosition(2,30);
+                ll3.add();
+
+                LinkedListImplementation ll1 = new LinkedListImplementation();
+                ll1.insertFirst(70);
+                ll1.insertFirst(30);
+                ll1.insertFirst(56);
+                ll1.add();
+                ll1.pop();
+                ll1.add();
+
+                LinkedListImplementation ll2 = new LinkedListImplementation();
+                ll2.insertLast(56);
+                ll2.insertLast(30);
+                ll2.insertLast(70);
+                ll2.add();
+                ll2.popLast();
+                ll2.add();
+            }
+}
+
