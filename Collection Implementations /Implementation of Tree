@@ -1,0 +1,119 @@
+package com.collectionFramework;
+
+public class TreeImplementation {
+
+    private TreeNode root;;
+
+    private static class TreeNode{
+        private TreeNode next;;
+        private int data;
+        private TreeNode left;
+        private TreeNode right;
+
+        public TreeNode(){
+           TreeNode root=null;
+            TreeNode left=null;
+            TreeNode right=null;
+        }
+        public TreeNode(int data){
+            this.data=data;
+        }
+    }
+    boolean empty(){
+        if(root==null)return true;
+        else return false;
+    }
+    public void add(int number) {
+        System.out.println("data : " + number);
+        TreeNode newnode = new TreeNode();
+        newnode.data = number;
+
+        if (root == null) {
+            root = newnode;
+        } else {
+            TreeNode temp = root;
+            while (temp != null) {
+                if (temp.data < number) {
+                    if (temp.right == null) {
+                        temp.right = newnode;
+                        newnode.next = temp;
+                        break;
+                    } else {
+                        temp = temp.right;
+                        continue;
+                    }
+                }
+                if (temp.data > number) {
+                    if (temp.left == null) {
+                        temp.left = newnode;
+                        newnode.next = temp;
+                        break;
+                    } else {
+                        temp = temp.left;
+                        continue;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+    public int size() {
+        if (root == null) {
+            return 0;
+        }
+        int count = 0;
+        TreeNode temp = root;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+    public boolean findNode(int number){
+        if(root==null){
+            return true;
+    }
+
+   TreeNode temp = root;
+    boolean result=false;
+		while(temp!=null){
+        if(temp.data==number){
+            result=true;
+            break;
+        }
+        if(temp.data>number){
+            temp=temp.left;
+            continue;
+        }
+        if(temp.data<number){
+            temp=temp.right;
+            continue;
+        }
+    }
+		if(result==false){
+        return false;
+    }
+		else{
+        return true;
+    }
+}
+
+    public static void main(String[] args){
+        TreeImplementation bst = new TreeImplementation();
+       // bst.insert(5,new TreeNode());
+        bst.add(56);
+        bst.add(30);
+        bst.add(70);
+        bst.add(99);
+        bst.add(65);
+        bst.add(80);
+        System.out.println("Search Number : " + bst.findNode(65));
+        System.out.println(bst.empty());
+        //System.out.println(bst.size());
+
+
+
+    }
+}
