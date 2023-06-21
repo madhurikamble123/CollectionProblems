@@ -1,0 +1,59 @@
+package com.collectionFramework;
+
+public class StackImplementation {
+    Node top;
+    class Node{
+        int data;
+        Node next;
+        Node(){
+        }
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    boolean empty(){
+        if(top==null)return true;
+        else return false;
+    }
+    int push(int data){
+        Node newnode= new Node(data);
+        if(top==null){
+            top=newnode;
+        }
+        else{
+            newnode.next=top;
+            top=newnode;
+        }
+        return data;
+    }
+        void pop(){
+            if(top==null){
+        System.out.println("empty");
+                top=top.next;
+
+    }}
+            int size(){
+                int count=0;
+                if(top==null) return count;
+                else{
+                    Node temp = top;
+                    while(temp.next!=null){
+                        count++;
+                        temp=temp.next;
+                    }
+                    return count+1;
+                }
+    }
+
+    public static void main(String[] args) {
+        StackImplementation stack = new StackImplementation();
+        System.out.println(stack.push(10));
+        System.out.println(stack.push(30));
+        System.out.println(stack.push(20));
+        System.out.println(stack.size());
+        System.out.println(stack.empty());
+        //System.out.println(stack.top);
+
+    }
+}
