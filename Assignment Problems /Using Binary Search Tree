@@ -1,0 +1,69 @@
+package com.collectionFramework;
+
+public class BinarySearchTree {
+    int data;   //data value
+    BinarySearchTree parentNode;  //points to the parent.
+    BinarySearchTree leftNode;    //points to left child.
+    BinarySearchTree rightNode;   //points to right child.
+
+    static int numofElements = 0;   //number of elements in the Tree.
+    static BinarySearchTree rootNode; //root of the tree.
+
+    public BinarySearchTree() {
+        parentNode = null;
+        leftNode = null;
+        rightNode = null;
+    }
+
+
+    //function to add elements in the Tree.
+    public void add(int number) {
+        System.out.println(" data : " + number);
+        BinarySearchTree node = new BinarySearchTree();
+        node.data = number;
+
+
+        if (numofElements == 0) {
+            rootNode = node;
+        } else {
+            BinarySearchTree temp = rootNode;
+            while (temp != null) {
+                if (temp.data < number) {
+                    if (temp.rightNode == null) {
+                        temp.rightNode = node;
+                        node.parentNode = temp;
+                        break;
+                    } else {
+                        temp = temp.rightNode;
+                        continue;
+                    }
+                }
+                if (temp.data > number) {
+                    if (temp.leftNode == null) {
+                        temp.leftNode = node;
+                        node.parentNode = temp;
+                        break;
+                    } else {
+                        temp = temp.leftNode;
+                        continue;
+                    }
+                }
+            }
+        }
+        numofElements++;
+
+    }
+
+
+    //function to display the tree.
+
+    public static void main(String[] args) {
+        BinarySearchTree tree = new BinarySearchTree();
+            tree.add(56);
+            tree.add(30);
+            tree.add(70);
+
+        System.out.println(tree);
+    }
+}
+       // bst.inOrder();
