@@ -1,0 +1,40 @@
+package com.collectionFramework;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Frequency_Of_String_Words {
+    static void count_freq(String str)
+    {
+        int count;
+        Map<String, Integer> map = new HashMap<>();
+        String arr[]=str.split(" ");
+        for(int i=0;i<arr.length;i++)
+        {
+            if (map.containsKey(arr[i])) {
+                count = map.get(arr[i]);
+                map.put(arr[i], count + 1);
+
+            } else {
+                map.put(arr[i], 1);
+            }
+        }
+        for(Map.Entry<String,Integer> entry:
+                map.entrySet())
+        {
+            System.out.println(entry.getKey()+
+                    " - "+entry.getValue());
+        }
+    }
+    public static void main(String[] args) {
+        String str = "To be or not to be";
+        String para = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+        Frequency_Of_String_Words words =new Frequency_Of_String_Words();
+
+        // Function Call
+        count_freq(str);
+        count_freq(para);
+    }
+}
+
+
