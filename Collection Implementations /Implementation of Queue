@@ -1,0 +1,48 @@
+package com.collectionFramework;
+
+public class QueueImplemention {
+
+        Node front;
+        Node rear;
+        class Node{
+            int data;
+            Node next;
+
+            Node(){
+            }
+            public Node(int data){
+                this.data=data;
+                        next=null;
+            }
+        }
+
+        int add(int data) {
+            Node newNode = new Node(data);
+            if (front == null) {
+                front = newNode;
+                rear = newNode;
+            } else {
+                rear.next = newNode;
+                rear = newNode;
+
+            }
+            return data;
+        }
+        void dequeue() {
+        front=front.next;
+        return;
+        }
+    public static void main(String[] args) {
+        QueueImplemention qq = new QueueImplemention();
+        System.out.println(qq.add(56));
+        System.out.println(qq.add(30));
+        System.out.println(qq.add(70));
+
+        qq.dequeue();
+
+
+        //System.out.println("Size is : " +stack.size());
+
+
+    }
+}
