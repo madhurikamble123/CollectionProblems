@@ -1,0 +1,29 @@
+package com.collectionFramework;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ContainElelement {
+    public static void main(String[] args) {
+       // ContainElelement c = new ContainElelement();
+        int[] array = {23, 44, 23, 44, 56, 56, 23, 12, 44, 12, 1, 1, 1, 1, 0};
+
+    Map<Integer,Integer> map = new HashMap<>();
+    int count;
+      for(int i=0;i<array.length;i++) {
+
+          if (map.containsKey(array[i])) {
+              count = map.get(array[i]);
+              map.put(array[i], count + 1);
+
+          } else {
+              map.put(array[i], 1);
+          }
+      }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet())
+        {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+    }
+    }
+
