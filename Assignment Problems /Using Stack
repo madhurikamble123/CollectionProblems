@@ -1,0 +1,79 @@
+package com.collectionFramework;
+
+
+public class StackAssignment {
+    private Node top;
+
+    private static class Node{
+        private int data;
+        private Node next;
+
+        Node(){
+        }
+        public Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    boolean empty(){
+        if(top==null)return true;
+        else return false;
+    }
+    int push(int data){
+        Node newnode= new Node(data);
+        if(top==null){
+            top=newnode;
+        }
+        else{
+            newnode.next=top;
+            top=newnode;
+        }
+        return data;
+    }
+    public Node pop() {
+        if (top == null) {
+            return null;
+        }
+        Node temp=top;
+        top = top.next;
+        temp.next=null;
+        return temp;
+    }
+    public int peek(){
+        if (top == null) {
+
+        }
+        return top.data;
+        }
+    int size(){
+        int count=0;
+        if(top==null) return count;
+        else{
+            Node temp = top;
+            while(temp.next!=null){
+                count++;
+                temp=temp.next;
+            }
+            return count+1;
+        }
+    }
+    public static void main(String[] args) {
+        StackAssignment stack = new StackAssignment();
+        System.out.println(stack.push(56));
+        System.out.println(stack.push(30));
+        System.out.println(stack.push(70));
+        //stack.push(56);
+
+
+        System.out.println("Size is : " +stack.size());
+        //stack.pop();
+        System.out.println(stack.peek());
+//        stack.pop();
+//        System.out.println(stack.peek());
+//        stack.pop();
+//        System.out.println(stack.peek());
+//        stack.pop();
+        System.out.println(stack.empty());
+
+    }
+}
